@@ -1,0 +1,8 @@
+<query id="deleteStar_rating" action="delete" priority="LOW">
+    <tables>
+        <table name="star_rating" />
+    </tables>
+    <conditions>
+        <condition operation="equal" column="document_srl" var="document_srl" filter="number" notnull="notnull" />
+    </conditions>
+</query>
