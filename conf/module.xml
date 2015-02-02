@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions />
+    <actions>
+        <action name="IS" type="view" />
+        <action name="dispStar_rating_configAdminContent" type="view" admin_index="true" />
+        <action name="dispStar_rating_configAdminGrantInfo" type="view" />
+        <action name="dispStar_rating_configAdminSkinInfo" type="view" />
+        <action name="dispStar_rating_configAdminModuleConfig" type="view" />
+
+        <action name="procStar_rating_configAdminInsertConfig" type="controller" ruleset="insertConfig" />
+        <action name="procStar_rating_configAdminInsertSkin" type="controller" />
+        <action name="procStar_rating_configAdminInsertModuleConfig" type="controller" />
+
+		<action name="triggerDisplay_star_rating" type="controller" />
+		<action name="star_rating_config_addstar" type="controller" />
+		<action name="star_rating_config_removestar" type="controller" />
+    </actions>
+</module>
