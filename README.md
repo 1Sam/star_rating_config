@@ -3,10 +3,10 @@
 
 
 1. 본문 보기에 별점을 표시할 때
-<img class="zbxe_widget_output" widget="star_rating" />
+<pre><img class="zbxe_widget_output" widget="star_rating" /></pre>
 
 2. 리스트, 갤러리, 카드, 웹진형태에 별점을 표시할 때
-<img class="zbxe_widget_output" widget="star_rating" document_srl="{$document->document_srl}"|cond="$document_srl!=$document->document_srl" />
+<pre><img class="zbxe_widget_output" widget="star_rating" document_srl="{$document->document_srl}"|cond="$document_srl!=$document->document_srl" /></pre>
 
 
 
