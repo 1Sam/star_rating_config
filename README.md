@@ -6,7 +6,7 @@
 <pre>&lt;img class=&quot;zbxe_widget_output&quot; widget=&quot;star_rating&quot; /&gt;</pre>
 
 2. 리스트, 갤러리, 카드, 웹진형태에 별점을 표시할 때
-<pre><img class="zbxe_widget_output" widget="star_rating" document_srl="{$document->document_srl}"|cond="$document_srl!=$document->document_srl" /></pre>
+<pre>&lt;img class=&quot;zbxe_widget_output&quot; widget=&quot;star_rating&quot;&gt;document_srl}&quot;|cond=&quot;$document_srl!=$document-&gt;document_srl&quot; /&gt;</pre>
 
 
 
