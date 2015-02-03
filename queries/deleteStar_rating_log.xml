@@ -1,4 +1,4 @@
-<query id="deletestar_rating_log" action="delete" priority="LOW">
+<query id="deleteStar_rating_log" action="delete" priority="LOW">
     <tables>
         <table name="star_rating_log" />
     </tables>
