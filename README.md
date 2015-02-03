@@ -1,7 +1,16 @@
 # star_rating_config
 별점위젯 설정 모듈
 
-별점 위젯 : <a href="https://github.com/1Sam/star_rating">star_rating</a> 
+
+1. 본문 보기에 별점을 표시할 때
+<img class="zbxe_widget_output" widget="star_rating" />
+
+2. 리스트, 갤러리, 카드, 웹진형태에 별점을 표시할 때
+<img class="zbxe_widget_output" widget="star_rating" document_srl="{$document->document_srl}"|cond="$document_srl!=$document->document_srl" />
+
+
+
+연관글 별점 위젯 : <a href="https://github.com/1Sam/star_rating">star_rating</a> 
 
 
 2015/02/03 : 글 삭제 트리거 추가 triggerDelete_star_rating_log();
