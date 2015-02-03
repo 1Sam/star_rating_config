@@ -1,4 +1,4 @@
-# star_rating_config
+# xe/modules/star_rating_config/
 별점위젯 설정 모듈
 
 
