@@ -1,0 +1,18 @@
+<load target="js/star_rating_admin.js" />
+<load target="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" />
+<load target="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+<!--//load target="css/bootstrap-switch.min.css" /-->
+<!--//load target="js/bootstrap-switch.min.js" /-->
+
+
+<div class="x_page-header">
+	<h1>{$lang->star_rating_config[this]}</h1>
+</div>
+
+<ul class="x_nav x_nav-tabs">
+	<li class="x_active"|cond="$act=='dispStar_rating_configAdminContent'"><a href="{getUrl('act','dispStar_rating_configAdminContent')}">{$lang->cmd_setup}</a></li>
+	<li class="x_active"|cond="$act=='dispStar_rating_configAdminSkinInfo'"><a href="{getUrl('act','dispStar_rating_configAdminSkinInfo')}">{$lang->cmd_manage_skin}</a></li>
+	<li class="x_active"|cond="$act=='dispStar_rating_configAdminModuleConfig'"><a href="{getUrl('act','dispStar_rating_configAdminModuleConfig')}">{$lang->cmd_rating_module_config}</a></li>
+	<li cond="$module != 'admin'"><a href="{getUrl('act','IS')}">{$lang->cmd_back}</a></li>
+</ul>
