@@ -1,0 +1,238 @@
+<!--#include("./header.html")-->
+<style>
+.x select {width:auto}
+</style>
+
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/star_rating_config/tpl/module_cofig/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<p>{$lang->star_rating_config[about]}</p>
+<form action="./" method="post" id="fo_star_rating_config">
+	<input type="hidden" name="module" value="star_rating_config" />
+	<input type="hidden" name="act" value="procStar_rating_configAdminInsertModuleConfig" />
+	<input type="hidden" name="xe_validator_id" value="modules/star_rating_config/tpl/module_cofig/1" />
+
+	<table class="x_table x_table-striped x_table-hover">
+		<thead>
+			<tr>
+				<th scope="col">{$lang->module}</th>
+			</tr>
+		</thead>
+		<tbody>
+
+ 
+            {@$oModuleModel = getModel('module')}
+			<tr loop="$mid_list => $key,$val">
+
+            <!-- 모듈이 보드일 때만 -->
+			<!--@if($val->module == 'board')-->
+	            {@$module_path = sprintf("./modules/%s/", $val->module)}
+    	        {@$style_default = $oModuleModel->loadSkinInfo($module_path, $val->skin)}
+
+	            <!--@if($style_default->title == 'rest default')-->
+    	            {@$st = $style_default->extra_vars[7]->options}
+        	    <!--@else-->
+            
+            	<!--// 	mid_list==> val->module =='board'
+            			mid_list==> val->module_srl == '2214' 인터넷팁
+                    
+                    	val->module_srl == 2214
+   
+                     {print_r($style_default,true)}<br><br>
+                     {print_r($val,true)}<hr>
+                //-->
+
+          			{@$st = $style_default->extra_vars[0]->options}
+
+            	<!--@end-->
+
+				<thead>
+                	
+					<tr>
+                    	
+						<th scope="row" style="min-width:150px !important"> <a class="btn x_btn-info" href="./{$val->mid}" target="_blank" data-toggle="tooltip" data-placement="top" title="{$val->mid} : {$val->module_srl}">{$val->browser_title}</a></th>
+
+						<th scope="col"  title="available : 별점을 끄고 켭니다.">{$lang->star_rating_config[available]}</th>
+						<th scope="col">{$lang->star_rating_config[skin]}</th>
+						<th scope="col">{$lang->star_rating_config[max]}</th>
+						<th scope="col">{$lang->star_rating_config[full_point]}</th>
+						<th scope="col">{$lang->star_rating_config[able_rate]}</th>
+						<th scope="col">{$lang->star_rating_config[display_rated_list]}</th>
+						<th scope="col">{$lang->star_rating_config[display_rated_info]}</th>
+						<th scope="col">{$lang->star_rating_config[decimal_point]}</th>
+						<th scope="col">{$lang->star_rating_config[display_zero]}</th>
+						<th scope="col">{$lang->star_rating_config[able_anonymous]}</th>
+						<th scope="col">{$lang->star_rating_config[last_update]}</th>
+					</tr>
+				</thead>
+                <!--기본-->
+                <tr cond="count($st)">
+	                <th scope="row" style="padding-left:25px">ㄴ보기(view)</th>
+	                <!--별점 스킨 리스트 선택-->
+					<td class="nowr">
+						<select name="star_available_view[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_available_view'] == 'N'">Off</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_available_view'] == 'Y'">On</option>
+						</select>
+                    </td>
+
+					<td class="nowr">
+					{@$wskin_list = $oModuleModel->getSkins("./widgets/star_rating/");}
+                      
+						<select name="star_skin_view[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option loop="$wskin_list => $skin_name, $skin" value="{$skin_name}" selected="selected"|cond="$module_config[$val->module_srl]['star_skin_view'] == $skin_name">{$skin->title}({$skin_name})</option>
+						</select>
+					</td>
+                
+					<td class="nowr">
+						<select name="star_max_view[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<!--@for($i=1;$i<11;$i++)-->
+							<option value="{$i}" selected="selected"|cond="$module_config[$val->module_srl]['star_max_view'] == $i">{$i}개</option>
+							<!--@end-->
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_full_point_view[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option value="10" selected="selected"|cond="$module_config[$val->module_srl]['star_full_point_view'] == '10'">10점</option>
+							<option value="auto" selected="selected"|cond="$module_config[$val->module_srl]['star_full_point_view'] == 'auto'">자동</option>
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_able_rate_view[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'Y'">투표 가능</option>
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_view'] == 'N'">투표 불가</option>
+						</select>
+					</td>
+					<td class="nowr">
+						<select name="star_display_rated_list_view[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_list_view'] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_list_view'] == 'Y'">표시</option>
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_display_rated_info_view[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_info_view'] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_info_view'] == 'Y'">표시</option>
+
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_decimal_point_view[{$val->module_srl}]">
+							<option value="0" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_view'] == '0'">정수</option>
+							<option value="1" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_view'] == '1'">0.0</option>
+                            <option value="2" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_view'] == '2'">0.00</option>
+						</select>
+					</td>
+					<td class="nowr">
+						<select name="star_display_zero_view[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_zero_view'] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_zero_view'] == 'Y'">표시</option>
+						</select>
+					</td>
+					<td class="nowr">
+						<select name="star_able_anonymous_view[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_anonymous_view'] == 'Y'">허용</option>
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_anonymous_view'] == 'N'">불가</option>
+						</select>                    
+                    </td>
+					<td class="nowr">
+						<select name="star_last_update_view[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_last_update_view'] == 'N'">미적용</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_last_update_view'] == 'Y'">적용</option>
+
+						</select>
+					</td>
+				</tr>
+                
+                <!--스타일; 목록,웹진,캘러리,블로그-->
+                <tr loop="$st => $key,$va">
+
+	                <th scope="row"  style="padding-left:25px">ㄴ{$va->title}({$va->value})</th>
+					<td class="nowr">
+						<select name="star_available_{$va->value}[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_available_'.$va->value] == 'N'">Off</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_available_'.$va->value] == 'Y'">On</option>
+
+						</select>
+					</td>
+					<td class="nowr">
+                		<select name="star_skin_{$va->value}[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option loop="$wskin_list => $skin_name, $skin" value="{$skin_name}" selected="selected"|cond="$module_config[$val->module_srl]['star_skin_'.$va->value] == $skin_name">{$skin->title}({$skin_name})</option>
+						</select>
+	                </td>                    
+					<td class="nowr">
+						<select name="star_max_{$va->value}[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<!--@for($i=1;$i<11;$i++)-->
+							<option value="{$i}" selected="selected"|cond="$module_config[$val->module_srl]['star_max_'.$va->value] == $i">{$i}개</option>
+							<!--@end-->
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_full_point_{$va->value}[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option value="10" selected="selected"|cond="$module_config[$val->module_srl]['star_full_point_'.$va->value] == '10'">10점</option>
+							<option value="auto" selected="selected"|cond="$module_config[$val->module_srl]['star_full_point_'.$va->value] == 'auto'">자동</option>
+						</select>
+                    </td>
+					<td class="nowr">
+						<select name="star_able_rate_{$va->value}[{$val->module_srl}]">
+							<option value="">{$lang->select}</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_'.$va->value] == 'Y'">투표 가능</option>
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_rate_'.$va->value] == 'N'">투표 불가</option>
+						</select>
+					</td>
+					<td class="nowr">
+						<select name="star_display_rated_list_{$va->value}[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_list_'.$va->value] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_list_'.$va->value] == 'Y'">표시</option>
+
+                        </select>
+                    </td>
+					<td class="nowr">
+						<select name="star_display_rated_info_{$va->value}[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_info_'.$va->value] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_rated_info_'.$va->value] == 'Y'">표시</option>
+                        </select>                    
+                    </td>
+					<td class="nowr">
+						<select name="star_decimal_point_{$va->value}[{$val->module_srl}]">
+							<option value="0" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_'.$va->value] == '0'">정수</option>
+							<option value="1" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_'.$va->value] == '1'">0.0</option>
+							<option value="2" selected="selected"|cond="$module_config[$val->module_srl]['star_decimal_point_'.$va->value] == '2'">0.00</option>
+                        </select>
+                    </td>
+					<td class="nowr">
+						<select name="star_display_zero_{$va->value}[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_display_zero_'.$va->value] == 'N'">미표시</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_display_zero_'.$va->value] == 'Y'">표시</option>
+                        </select>
+                    </td>
+					<td class="nowr">
+						<select name="star_able_anonymous_{$va->value}[{$val->module_srl}]">
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_able_anonymous_'.$va->value] == 'Y'">허용</option>
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_able_anonymous_'.$va->value] == 'N'">불가</option>
+                        </select>
+					</td>
+					<td class="nowr">
+						<select name="star_last_update_{$va->value}[{$val->module_srl}]">
+							<option value="N" selected="selected"|cond="$module_config[$val->module_srl]['star_last_update_'.$va->value] == 'N'">미적용</option>
+							<option value="Y" selected="selected"|cond="$module_config[$val->module_srl]['star_last_update_'.$va->value] == 'Y'">적용</option>
+                        </select>
+                    </td>
+                </tr>
+			</tr>
+
+			<!--@end-->
+		</tbody>
+	</table>
+    <div class="x_clearfix">
+		<span class="x_pull-right"><input class="x_btn x_btn-primary" type="submit" value="{$lang->cmd_registration}" /></span>
+	</div>
+</form>
