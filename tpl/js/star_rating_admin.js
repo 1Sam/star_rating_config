@@ -1,6 +1,6 @@
 /**
- * @file   modules/board/js/board_admin.js
- * @author NAVER (developers@xpressengine.com)
+ * @file   modules/star_rating_config/js/star_rating_admin.js
+ * @author 1Sam (csh@korea.com)
  * @brief  star_rating_config 모듈의 관리자용 javascript
  **/
 
