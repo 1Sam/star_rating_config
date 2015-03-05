@@ -78,7 +78,7 @@ class star_rating_configController extends star_rating_config {
 		$args->document_srl = Context::get('documentsrl'); // 해당 글
 		$args->member_srl = Context::get('membersrl'); //해당 사람
 
-		$rateval = Context::get('rating'); //점수
+		$rateval = Context::get('point'); //점수
 		$star_max = Context::get('starmax'); // 표시될 별의 개수
 		$full_point = Context::get('fullpoint'); // 평균점수 표시 방법, 10점 만점 또는 별 표시 개수가 만점, 변수값 : as_ten, as_star_max
 		$update_order = Context::get('updateorder');
@@ -131,7 +131,7 @@ class star_rating_configController extends star_rating_config {
 			$this->add('document_srl', $args->document_srl);
 			$this->add('star_max', $star_max);
 			$this->add('update_order', $update_order);
-			$this->add('val', $rateval);
+			$this->add('point', $rateval);
 
 		// 이미 투표한 경우
 		} else {
@@ -139,7 +139,7 @@ class star_rating_configController extends star_rating_config {
 			$this->add('document_srl', $args->document_srl);
 			$this->add('star_max', $star_max);
 			$this->add('update_order', $update_order);
-			$this->add('val', $rateval);
+			$this->add('point', $rateval);
 			//echo json_encode($output);
 			$this->message = 'already'; // message 는 success 가 기본값
 		}
